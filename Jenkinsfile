@@ -16,7 +16,7 @@ pipeline {
         }
         stage('Deliver') {
             steps {
-                eb --version
+                sh 'eb --version'
             }
         }
         stage('Complete') {
