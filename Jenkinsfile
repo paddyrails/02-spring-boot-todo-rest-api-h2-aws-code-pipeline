@@ -22,12 +22,12 @@ pipeline {
             steps {
                 sh 'eb --version'
                 // Create configuration template based on existing environment
-                ebCreateConfigurationTemplate(
-                    applicationName: "todo-rest-api",
-                    templateName: "todo-rest-api-template",
-                    environmentId: "e-isnpfppgpf",
-                    description: "Configuration template for todo-rest-api"
-                )
+                // ebCreateConfigurationTemplate(
+                //     applicationName: "todo-rest-api",
+                //     templateName: "todo-rest-api-template",
+                //     environmentId: "e-isnpfppgpf",
+                //     description: "Configuration template for todo-rest-api"
+                // )
                 // Create environment from existing configuration template
                 ebCreateEnvironment(
                     applicationName: "todo-rest-api",
