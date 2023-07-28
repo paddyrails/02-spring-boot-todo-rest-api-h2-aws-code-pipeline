@@ -29,12 +29,17 @@ pipeline {
                 //     description: "Configuration template for todo-rest-api"
                 // )
                 // Create environment from existing configuration template
-                ebCreateEnvironment(
+                // ebCreateEnvironment(
+                //     applicationName: "todo-rest-api",
+                //     environmentName: "Todo-rest-api-staging-blue",
+                //     templateName: "todo-rest-api-template",
+                //     versionLabel: "Todo-rest-api-docker-1",
+                //     description: "Blue environment"
+                // )
+                // Wait for environment health to be green for at least 1 minute
+                ebWaitOnEnvironmentHealth(
                     applicationName: "todo-rest-api",
                     environmentName: "Todo-rest-api-staging-blue",
-                    templateName: "todo-rest-api-template",
-                    versionLabel: "Todo-rest-api-docker-1",
-                    description: "Blue environment"
                 )
             }
         }
