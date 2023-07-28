@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Deliver') {
             steps {
-                sh '/home/ec2-user/.local/bin/eb --version'
+                sh 'sudo /home/ec2-user/.local/bin/eb --version'
             }
         }
         stage('Complete') {
