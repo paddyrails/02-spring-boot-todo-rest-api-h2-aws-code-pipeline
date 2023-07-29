@@ -21,7 +21,10 @@ pipeline {
         stage('Upload artifact to s3') {
             steps {
                 echo "Upload artifact to s3"
-                s3Upload(bucket:"popsy-bucket", path:"$BUILD_NUMBER", includePathPattern:'**/*')            
+                // s3Upload(bucket:"popsy-bucket", path:"$BUILD_NUMBER/", includePathPattern:'**/*')            
+                s3Upload(file:"target/02-spring-boot-todo-rest-api-h2-continuous-deployment-pipeline-0.0.1-SNAPSHOT.jar", 
+                bucket:"popsy-bucket", 
+                path:"$BUILD_NUMBER/02-spring-boot-todo-rest-api-h2-continuous-deployment-pipeline-0.0.1-SNAPSHOT.jar")
             }            
         }
 
@@ -31,7 +34,7 @@ pipeline {
                 sh 'eb --version'
                 ebCreateApplicationVersion(
                     applicationName: "todo-rest-api",
-                    versionLabel: "Todo-rest-api-docker-$BUILD_NUMBER",
+                    versionLabel: "Todo-rest-api-$BUILD_NUMBER",
                     s3Bucket: "popsy-bucket",
                     s3Key: "$BUILD_NUMBER",
                     description: "New version"
@@ -48,7 +51,7 @@ pipeline {
                     applicationName: "todo-rest-api",
                     environmentName: "Todo-rest-api-staging-$BUILD_NUMBER-blue",
                     templateName: "todo-rest-api-template",
-                    versionLabel: "Todo-rest-api-docker-$BUILD_NUMBER",
+                    versionLabel: "Todo-rest-api-$BUILD_NUMBER",
                     description: "Blue environment"
                 )
                 // Wait for environment health to be green for at least 1 minute
