@@ -33,7 +33,7 @@ pipeline {
                 sh 'eb --version'
                 ebCreateApplicationVersion(
                     applicationName: "todo-rest-api",
-                    versionLabel: "Todo-rest-api-docker-3",
+                    versionLabel: "Todo-rest-api-docker-$BUILD_NUMBER",
                     s3Bucket: "popsy-bucket",
                     s3Key: "02-spring-boot-todo-rest-api-h2-continuous-deployment-pipeline-0.0.1-SNAPSHOT.jar",
                     description: "New version"
@@ -41,16 +41,16 @@ pipeline {
                 // Create configuration template based on existing environment
                 ebCreateConfigurationTemplate(
                     applicationName: "todo-rest-api",
-                    templateName: "todo-rest-api-template",
+                    templateName: "todo-rest-api-template-$BUILD_NUMBER",
                     environmentId: "e-isnpfppgpf",
                     description: "Configuration template for todo-rest-api"
                 )
                 // Create environment from existing configuration template - New version
                 ebCreateEnvironment(
                     applicationName: "todo-rest-api",
-                    environmentName: "Todo-rest-api-staging-blue",
+                    environmentName: "Todo-rest-api-staging-$BUILD_NUMBER-blue",
                     templateName: "todo-rest-api-template",
-                    versionLabel: "Todo-rest-api-docker-3",
+                    versionLabel: "Todo-rest-api-docker-$BUILD_NUMBER",
                     description: "Blue environment"
                 )
                 // Wait for environment health to be green for at least 1 minute
