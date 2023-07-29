@@ -22,7 +22,7 @@ pipeline {
             steps {
                 echo "Upload artifact to s3"
                 s3Upload(file:'target/02-spring-boot-todo-rest-api-h2-continuous-deployment-pipeline-0.0.1-SNAPSHOT.jar', 
-                    bucket:'codepipeline-us-east-1-19767114376', 
+                    bucket:'popsy-bucket', 
                     path:'02-spring-boot-todo-rest-api-h2-continuous-deployment-pipeline-0.0.1-SNAPSHOT.jar')
             }            
         }
@@ -34,7 +34,7 @@ pipeline {
                 ebCreateApplicationVersion(
                     applicationName: "todo-rest-api",
                     versionLabel: "Todo-rest-api-docker-3",
-                    s3Bucket: "codepipeline-us-east-1-19767114376",
+                    s3Bucket: "popsy-bucket",
                     s3Key: "02-spring-boot-todo-rest-api-h2-continuous-deployment-pipeline-0.0.1-SNAPSHOT.jar",
                     description: "New version"
                 )
