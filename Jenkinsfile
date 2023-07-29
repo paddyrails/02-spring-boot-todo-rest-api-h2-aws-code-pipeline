@@ -21,10 +21,7 @@ pipeline {
         stage('Upload artifact to s3') {
             steps {
                 echo "Upload artifact to s3"
-                s3Upload(bucket:"popsy-bucket", path:"$BUILD_NUMBER/", includePathPattern:'**/*')
-                s3Upload(file:'target/02-spring-boot-todo-rest-api-h2-continuous-deployment-pipeline-0.0.1-SNAPSHOT.jar', 
-                    bucket:'popsy-bucket', 
-                    path:"$BUILD_NUMBER/02-spring-boot-todo-rest-api-h2-continuous-deployment-pipeline-0.0.1-SNAPSHOT.jar")
+                s3Upload(bucket:"popsy-bucket", path:"$BUILD_NUMBER", includePathPattern:'**/*')            
             }            
         }
 
