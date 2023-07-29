@@ -50,7 +50,7 @@ pipeline {
                 ebCreateEnvironment(
                     applicationName: "todo-rest-api",
                     environmentName: "Todo-rest-api-staging-$BUILD_NUMBER-blue",
-                    templateName: "todo-rest-api-template",
+                    templateName: "todo-rest-api-template-$BUILD_NUMBER",
                     versionLabel: "Todo-rest-api-$BUILD_NUMBER",
                     description: "Blue environment"
                 )
