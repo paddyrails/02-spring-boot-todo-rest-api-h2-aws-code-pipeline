@@ -36,14 +36,14 @@ pipeline {
                     applicationName: "todo-rest-api",
                     versionLabel: "Todo-rest-api-$BUILD_NUMBER",
                     s3Bucket: "popsy-bucket",
-                    s3Key: "$BUILD_NUMBER",
+                    s3Key: "$BUILD_NUMBER/02-spring-boot-todo-rest-api-h2-continuous-deployment-pipeline-0.0.1-SNAPSHOT.jar",
                     description: "New version"
                 )
                 // Create configuration template based on existing environment
                 ebCreateConfigurationTemplate(
                     applicationName: "todo-rest-api",
                     templateName: "todo-rest-api-template-$BUILD_NUMBER",
-                    environmentId: "e-isnpfppgpf",
+                    environmentId: "e-npyrvd8pzw",
                     description: "Configuration template for todo-rest-api"
                 )
                 // Create environment from existing configuration template - New version
